@@ -52,7 +52,7 @@ defmodule CockroachDb.Worker do
         if max_src_updated_at != max_dest_updated_at do
           select_src(select_pid, insert_pid, limit, table_name, uniques, type, max_src_updated_at, max_dest_updated_at)
         end
-        IO.puts("Already updated")
+        IO.puts("Table #{table_name} already updated")
     end
   end
 
@@ -89,7 +89,7 @@ defmodule CockroachDb.Worker do
             raise "Define type of destination database"
         end
       {:error, _} ->
-        IO.puts("Transaction failed")
+        IO.puts("Transaction for table #{table_name} failed")
     end
   end
 
